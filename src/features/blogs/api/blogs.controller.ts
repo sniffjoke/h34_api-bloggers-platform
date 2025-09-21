@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query, Req } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Post, Query, Req } from '@nestjs/common';
 import { PostsService } from '../../posts/application/posts.service';
 import { Request } from 'express';
 import { CommandBus } from '@nestjs/cqrs';
@@ -48,4 +48,16 @@ export class BlogsController {
       items: newData,
     };
   }
+
+  // ----------------------_SUBSCRIPTION_------------------------- //
+  @Post('blogs/:id/subscription')
+  async addSubscription(@Param('id') id: string) {
+    return 'add subscription'
+  }
+
+  @Delete('blogs/:id/subscription')
+  async deleteSubscription(@Param('id') id: string) {
+    return 'delete subscription'
+  }
+
 }

@@ -361,9 +361,7 @@ export class BloggersController {
     const metadata = await image.metadata();
 
     const allowedSizes = new Set([
-      '940x432',
-      //   '300x180',
-      //   '149x96',
+      '940x432'
     ]);
     const sizeKey = `${metadata.width}x${metadata.height}`;
     if (!allowedSizes.has(sizeKey)) {
@@ -391,9 +389,7 @@ export class BloggersController {
         file.mimetype,
       );
     }))
-    // console.log('upload resized: ', uploadResizedImages);
     const imageModel: Omit<PhotoSizeViewModel, 'url'> = {
-      // url,
       width: metadata.width,
       height: metadata.height,
       fileSize: buffer.length
@@ -405,14 +401,9 @@ export class BloggersController {
       req.headers.authorization as string,
       [...images, imageModel],
     );
-    // console.log('posts: ', posts);
-    // const imagesOutput = await Promise.all(createThreeImages!.map(async post => {
     const main = await this.postsQueryRepository.getPhotoMetadata(
       idParams.postId,
     );
     return { main };
-    // }))
-    // console.log('imagesOutput: ', imagesOutput);
-    // return imagesOutput
   }
 }
